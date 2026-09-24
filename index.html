@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nova Dental Clinic | AI Phone Receptionist (Demo)</title>
+<meta name="description" content="Browser-based AI phone receptionist prototype. Voice in, voice out, no API keys.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="mark">N</span>Nova Dental Clinic</div>
+  <nav aria-label="Views">
+    <button data-view="call" aria-current="page">Try a call</button>
+    <button data-view="dash">Receptionist dashboard</button>
+  </nav>
+</header>
+<p class="notice"><strong>This is a browser-based prototype.</strong> Production deployments can connect this receptionist to a real business phone number. Calls made here are labelled Demo Call and never reach a real phone line.</p>
+<main>
+<section id="view-call">
+  <h1>The front desk that answers on the first ring.</h1>
+  <p class="sub">Press the button and talk the way a patient would. Nova takes appointment requests, answers questions, handles emergencies and hands off to staff.</p>
+  <div class="call">
+    <div>
+      <div class="handset" id="handset" data-state="idle">
+        <span class="tag">Demo Call · browser only</span>
+        <p id="status" aria-live="polite">Ready when you are</p>
+        <button class="dial" id="dial">Call receptionist</button>
+        <div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <p id="timer" class="timer">0:00</p>
+        <label class="chk"><input type="checkbox" id="speak" checked> Speak replies aloud</label>
+      </div>
+      <div class="slip">
+        <h2>Captured during the call</h2>
+        <p id="intentNow" class="intent">Intent: waiting for the call</p>
+        <dl id="slip"></dl>
+      </div>
+    </div>
+    <div class="convo">
+      <p id="fallback" class="warn" hidden>Voice input isn't available in this browser (try Chrome or Edge). The full demo still works: type your side of the call below.</p>
+      <div class="chips" id="chips"></div>
+      <div id="log" class="log" aria-live="polite"><p class="empty">Start a call, then speak or tap a suggestion.</p><p id="interim" class="interim"></p></div>
+      <form id="form">
+        <input id="txt" placeholder="Type instead of speaking" autocomplete="off" disabled aria-label="Type your reply">
+        <button class="send" disabled>Send</button>
+      </form>
+      <section id="summary" class="summary" hidden></section>
+    </div>
+  </div>
+</section>
+
+<section id="view-dash" hidden>
+  <h1>Receptionist dashboard</h1>
+  <p class="sub">Sample calls plus any Demo Calls you make here. Demo Calls are stored only in your browser.</p>
+  <div class="kpis" id="kpis"></div>
+  <div class="panel">
+    <div class="bar-head"><h2>Calls</h2>
+      <select id="filter" aria-label="Filter calls"><option value="all">All calls</option><option value="book">Appointment requests</option><option value="follow">Follow-up required</option><option value="emergency">Emergencies</option></select>
+      <button id="reset" class="ghost">Clear Demo Calls</button>
+    </div>
+    <div class="scroll"><table id="tbl"></table></div>
+  </div>
+  <div class="panel path">
+    <h2>Path to production</h2>
+    <p>Browser prototype, then telephony provider, then speech recognition, then AI, then CRM and calendar. Details are in the README.</p>
+  </div>
+</section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
